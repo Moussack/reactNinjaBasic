@@ -14,7 +14,7 @@ function App() {
          return prevEvents.filter((event) => event.id !== id);
       });
    };
-   //asd asd asdgit
+   //asd asd asdgit asdasd
    return (
       <div className="App">
          {events.map((event) => {
