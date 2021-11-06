@@ -1,7 +1,9 @@
 import './App.css';
 import { useState } from 'react';
+import Title from './components/Title';
 
 function App() {
+   const [showEvent, setShowEvent] = useState(true);
    const [events, setEvents] = useState([
       { title: 'Mario Birthday', id: 1 },
       { title: 'How are you?', id: 2 },
@@ -14,23 +16,35 @@ function App() {
          return prevEvents.filter((event) => event.id !== id);
       });
    };
-   //asd asd asdgit asdasd
+
    return (
       <div className="App">
-         {events.map((event) => {
-            return (
-               <div key={event.id}>
-                  <h2>{event.title}</h2>
-                  <button
-                     onClick={() => {
-                        handleClick(event.id);
-                     }}
-                  >
-                     Delete
-                  </button>
-               </div>
-            );
-         })}
+         <Title />
+         {showEvent && (
+            <div>
+               <button onClick={() => setShowEvent(false)}>Hide Events</button>
+            </div>
+         )}
+         {!showEvent && (
+            <div>
+               <button onClick={() => setShowEvent(true)}>Show Events</button>
+            </div>
+         )}
+         {showEvent &&
+            events.map((event) => {
+               return (
+                  <div key={event.id}>
+                     <h2>{event.title}</h2>
+                     <button
+                        onClick={() => {
+                           handleClick(event.id);
+                        }}
+                     >
+                        Delete
+                     </button>
+                  </div>
+               );
+            })}
       </div>
    );
 }
