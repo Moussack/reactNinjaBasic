@@ -6,8 +6,9 @@ import EventList from './components/eventList';
 
 function App() {
    const [showModal, setShowModal] = useState(false);
-   console.log(showModal);
+
    const [showEvents, setShowEvents] = useState(true);
+
    const [events, setEvents] = useState([
       { title: "mario's birthday bash", id: 1 },
       { title: "bowser's live stream", id: 2 },
@@ -46,7 +47,7 @@ function App() {
          {showEvents && <EventList events={events} handleClick={handleClick} />}
 
          {showModal && (
-            <Modal handleClose={handleClose}>
+            <Modal handleClose={handleClose} isSalesModal={false}>
                <h2>TERMS AND CONDITION</h2>
                <p>Loremsasd ipsum dolor sit, amet consectetur adipisicing elit. Expedita doloribus nostrum officia ab accusamus? Doloribus!</p>
             </Modal>
