@@ -7,16 +7,17 @@ import NewEventForm from './components/NewEventForm';
 
 function App() {
    const [showModal, setShowModal] = useState(false);
-
    const [showEvents, setShowEvents] = useState(true);
+   const [events, setEvents] = useState([]);
 
-   const [events, setEvents] = useState([
-      { title: "mario's birthday bash", id: 1 },
-      { title: "bowser's live stream", id: 2 },
-      { title: 'race on moo moo farm', id: 3 },
-      { title: 'Gaming Time', id: 4 },
-      { title: 'Gaming Time 2', id: 5 },
-   ]);
+   const addEvent = (event) => {
+      // *** add to state event
+      setEvents((prev) => {
+         return [...prev, event];
+      });
+      // close the modal after adding event
+      setShowModal(false);
+   };
 
    const handleClick = (id) => {
       setEvents((prevEvents) => {
@@ -28,7 +29,7 @@ function App() {
       setShowModal(false);
    };
 
-   const subtitle = 'All the latest events in Marioland';
+   const subtitle = 'All the latest events';
 
    return (
       <div className="App">
@@ -49,7 +50,7 @@ function App() {
 
          {showModal && (
             <Modal handleClose={handleClose} isSalesModal={false}>
-               <NewEventForm />
+               <NewEventForm addEvent={addEvent} />
             </Modal>
          )}
 
